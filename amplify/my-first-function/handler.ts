@@ -4,7 +4,7 @@
 // Amplify.configure(awsconfig);
 
 export const handler = async (event: any) => {
-  const sourceBucket = 'source-bucket-name';
+/*   const sourceBucket = 'source-bucket-name';
   const destinationBucket = 'destination-bucket-name';
   const fileName = 'template-file.txt';
 
@@ -13,11 +13,6 @@ export const handler = async (event: any) => {
     const templateFile = await Storage.get(fileName, { bucket: sourceBucket, download: true });
     let fileContent = templateFile.Body.toString('utf-8');
 
-    // get gig info from ampily db
-    /* const gig = await API.graphql({
-        query: queries.getGig,
-        variables: { id: '123' },
-    }); */
 
     // Replace variables in the template file
     const variables = {
@@ -46,5 +41,6 @@ export const handler = async (event: any) => {
       statusCode: 500,
       body: JSON.stringify('Error processing file'),
     };
-  }
+  } */
+  return {statusCode: 200, body: JSON.stringify('Hello from Lambda!')};
 };
