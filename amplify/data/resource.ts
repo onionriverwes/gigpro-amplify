@@ -19,6 +19,59 @@ const schema = a.schema({
       isDone: a.boolean(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+    Gig: a
+    .model({
+      content: a.string(),
+      start: a.date(),
+      end: a.date(),
+      actId: a.integer(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+    Act: a
+    .model({
+      name: a.string(),
+      genre: a.string(),
+      description: a.string(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+    User: a
+    .model({
+      email: a.string(),
+      password: a.string(),
+      role: a.string(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+    GigAct: a
+    .model({
+      gigId: a.integer(),
+      actId: a.integer(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+    VenueAct: a
+    .model({
+      venueId: a.integer(),
+      actId: a.integer(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+    UserAct: a
+    .model({
+      userId: a.integer(),
+      actId: a.integer(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+    UserVenue: a
+    .model({
+      userId: a.integer(),
+      venueId: a.integer(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+    UserGig: a
+    .model({
+      userId: a.integer(),
+      gigId: a.integer(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+
 });
 
 export type Schema = ClientSchema<typeof schema>;
