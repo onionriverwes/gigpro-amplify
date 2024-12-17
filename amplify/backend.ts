@@ -7,4 +7,5 @@ defineBackend({
     auth,
     data,
     myFirstFunction,
+    storage,
 });
