@@ -1,6 +1,7 @@
-import AWS from 'aws-sdk';
+import Amplify, { Storage } from 'aws-amplify';
+import awsconfig from '../aws-exports';
 
-const s3 = new AWS.S3();
+Amplify.configure(awsconfig);
 
 export const handler = async (event: any) => {
   const sourceBucket = 'source-bucket-name';
@@ -9,12 +10,14 @@ export const handler = async (event: any) => {
 
   try {
     // Get the template file from S3
-    const templateFile = await s3.getObject({
-      Bucket: sourceBucket,
-      Key: fileName,
-    }).promise();
-
+    const templateFile = await Storage.get(fileName, { bucket: sourceBucket, download: true });
     let fileContent = templateFile.Body.toString('utf-8');
+
+    // get gig info from ampily db
+    /* const gig = await API.graphql({
+        query: queries.getGig,
+        variables: { id: '123' },
+    }); */
 
     // Replace variables in the template file
     const variables = {
@@ -28,12 +31,10 @@ export const handler = async (event: any) => {
     }
 
     // Upload the new file to the destination bucket
-    await s3.putObject({
-      Bucket: destinationBucket,
-      Key: fileName,
-      Body: fileContent,
-      ContentType: 'text/plain',
-    }).promise();
+    await Storage.put(fileName, fileContent, {
+      bucket: destinationBucket,
+      contentType: 'text/plain',
+    });
 
     return {
       statusCode: 200,
