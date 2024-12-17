@@ -13,6 +13,12 @@ const schema = a.schema({
       isDone: a.boolean(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+    Venue: a
+    .model({
+      content: a.string(),
+      isDone: a.boolean(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
