@@ -1,7 +1,7 @@
-import Amplify, { Storage } from 'aws-amplify';
-import awsconfig from '../aws-exports';
+// import Amplify, { Storage } from 'aws-amplify';
+// import awsconfig from '../aws-exports';
 
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
 
 export const handler = async (event: any) => {
   const sourceBucket = 'source-bucket-name';
