@@ -1,3 +1,5 @@
+import './HeaderFooter.css';
+
 export default function Footer() {
   return (
     <footer>
