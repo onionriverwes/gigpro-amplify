@@ -1,20 +1,28 @@
-import Link from 'next/link';
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
-export default function Header() {
-  return (
-      <header>
-        <div className="logo-title">
-          <img src="/amplify.svg" alt="Logo" className="logo"/>
-          <h1 className="title">Your App Title</h1>
-        </div>
-        <nav>
-          <ul>
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/pages/act-manager">Act Manager</Link></li>
-            <li><Link href="/pages/website-manager">Website Manager</Link></li>
-            <li><Link href="/pages/gig-manager">Gig Manager</Link></li>
-          </ul>
-        </nav>
-      </header>
-  );
+export function Header() {
+    return (
+        <header className="bg-background border-b">
+            <div className="container flex h-16 items-center justify-between">
+                <div className="flex items-center gap-6">
+                    <Link href="/" className="text-2xl font-bold">
+                        GigPro
+                    </Link>
+                    <nav className="flex gap-4">
+                        <Link href="/act-manager" className="text-sm font-medium hover:underline">
+                            Act Manager
+                        </Link>
+                        <Link href="/gig-manager" className="text-sm font-medium hover:underline">
+                            Gig Manager
+                        </Link>
+                        <Link href="/website-manager" className="text-sm font-medium hover:underline">
+                            Website Manager
+                        </Link>
+                    </nav>
+                </div>
+                <Button size="sm">Login</Button>
+            </div>
+        </header>
+    )
 }
